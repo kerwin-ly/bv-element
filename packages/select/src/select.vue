@@ -756,6 +756,7 @@
           this.toggleMenu();
         } else {
           if (this.options[this.hoverIndex]) {
+            this.$emit('key-enter', this.hoverIndex);
             this.handleOptionSelect(this.options[this.hoverIndex]);
           }
         }
