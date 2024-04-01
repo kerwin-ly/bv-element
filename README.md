@@ -145,5 +145,11 @@ Scan the QR code using [Dingtalk App](https://www.dingtalk.com/) to join in disc
 
 * node: `v11.15.0`
 
+## Quick Start
+
+```shell
+npm run dev:play
+```
+
 ## LICENSE
 [MIT](LICENSE)
