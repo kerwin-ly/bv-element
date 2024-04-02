@@ -6,5 +6,7 @@ Based on [element-ui](http://element.eleme.io/#/en-US/component/quickstart) and 
 ## Quick Start
 
 ```shell
+npm run bootstrap
+
 npm run dev:play
 ```
