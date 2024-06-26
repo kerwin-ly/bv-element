@@ -5,18 +5,18 @@
 Instalar mediante npm es la forma recomendada ya que se integra fácilmente con [webpack](https://webpack.js.org/).
 
 ```shell
-npm i element-ui -S
+npm i bv-element -S
 ```
 
 ### CDN
 
-Obtenga la última versión desde [unpkg.com/element-ui](https://unpkg.com/element-ui/) , e importe el JavaScript y los archivos CSS en su página.
+Obtenga la última versión desde [unpkg.com/bv-element](https://unpkg.com/bv-element/) , e importe el JavaScript y los archivos CSS en su página.
 
 ```html
 <!-- import CSS -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" href="https://unpkg.com/bv-element/lib/theme-chalk/index.css">
 <!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://unpkg.com/bv-element/lib/index.js"></script>
 ```
 
 ##Tip

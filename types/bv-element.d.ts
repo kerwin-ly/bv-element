@@ -96,11 +96,11 @@ export interface InstallationOptions {
   size: string
 }
 
-/** The version of element-ui */
+/** The version of bv-element */
 export const version: string
 
 /**
- * Install all element-ui components into Vue.
+ * Install all bv-element components into Vue.
  * Please do not invoke this method directly.
  * Call `Vue.use(ElementUI)` to install.
  */

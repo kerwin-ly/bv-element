@@ -33,9 +33,9 @@
 </template>
 
 <script>
-  import { hasClass } from 'element-ui/src/utils/dom';
-  import { isObject } from 'element-ui/src/utils/types';
-  import Migrating from 'element-ui/src/mixins/migrating';
+  import { hasClass } from 'bv-element/src/utils/dom';
+  import { isObject } from 'bv-element/src/utils/types';
+  import Migrating from 'bv-element/src/mixins/migrating';
 
   export default {
     name: 'ElRate',

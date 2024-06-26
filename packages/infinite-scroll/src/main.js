@@ -4,10 +4,10 @@ import {
   isFunction,
   isUndefined,
   isDefined
-} from 'element-ui/src/utils/types';
+} from 'bv-element/src/utils/types';
 import {
   getScrollContainer
-} from 'element-ui/src/utils/dom';
+} from 'bv-element/src/utils/dom';
 
 const getStyleComputedProperty = (element, property) => {
   if (element === window) {

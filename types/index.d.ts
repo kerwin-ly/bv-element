@@ -1,4 +1,4 @@
-export * from './element-ui'
+export * from './bv-element'
 
-import * as ElementUI from './element-ui'
+import * as ElementUI from './bv-element'
 export default ElementUI
