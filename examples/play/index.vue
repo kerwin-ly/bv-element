@@ -1,9 +1,8 @@
 <template>
   <section>
     <div class="box">
-      <el-select v-model="value" filterable remote reserve-keyword placeholder="请输入关键词"
-        :remote-method="remoteMethod" :loading="loading">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+      <el-select v-model="value" placeholder="请输入关键词">
+        <el-option v-for="item in options" :key="item" :label="item" :value="item">
         </el-option>
       </el-select>
     </div>
@@ -17,17 +16,19 @@
   flex-direction: column;
   align-items: center;
   border: 1px solid red;
+  height: 800px;
 }
 </style>
 <script>
+import select from '../../packages/select/src/select.vue';
 export default {
+  components: { select },
   data() {
     return {
-      options: [],
       value: [],
       list: [],
       loading: false,
-      states: ["Alabama", "Alaska", "Arizona",
+      options: ["Alabama", "Alaska", "Arizona",
         "Arkansas", "California", "Colorado",
         "Connecticut", "Delaware", "Florida",
         "Georgia", "Hawaii", "Idaho", "Illinois",
@@ -47,9 +48,7 @@ export default {
     }
   },
   mounted() {
-    this.list = this.states.map(item => {
-      return { value: `value:${item}`, label: `label:${item}` };
-    });
+    document.body.style.zoom = 0.8;
   },
   methods: {
     remoteMethod(query) {

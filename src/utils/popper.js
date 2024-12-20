@@ -631,10 +631,10 @@
         }
         // othwerise, we use the standard `left` and `top` properties
         else {
-            styles.left =left;
-            styles.top = top;
+            // update left and top dis if page is zoomed by default
+            styles.left = left / document.body.style.zoom;
+            styles.top = top / document.body.style.zoom;
         }
-
         // any property present in `data.styles` will be applied to the popper,
         // in this way we can make the 3rd party modifiers add custom styles to it
         // Be aware, modifiers could override the properties defined in the previous
