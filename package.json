@@ -1,6 +1,6 @@
 {
   "name": "bv-element",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Forked from element-ui and enhanced",
   "main": "lib/bv-element.common.js",
   "files": [

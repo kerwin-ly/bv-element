@@ -632,8 +632,8 @@
         // othwerise, we use the standard `left` and `top` properties
         else {
             // update left and top dis if page is zoomed by default
-            styles.left = left / document.body.style.zoom;
-            styles.top = top / document.body.style.zoom;
+            styles.left = left;
+            styles.top = top;
         }
         // any property present in `data.styles` will be applied to the popper,
         // in this way we can make the 3rd party modifiers add custom styles to it
@@ -1173,12 +1173,12 @@
             : rect.top;
 
         return {
-            left: rect.left,
-            top: rectTop,
-            right: rect.right,
-            bottom: rect.bottom,
-            width: rect.right - rect.left,
-            height: rect.bottom - rectTop
+            left: rect.left / document.body.style.zoom,
+            top: rectTop / document.body.style.zoom,
+            right: rect.right / document.body.style.zoom,
+            bottom: rect.bottom / document.body.style.zoom,
+            width: (rect.right - rect.left) / document.body.style.zoom,
+            height: (rect.bottom - rectTop) / document.body.style.zoom
         };
     }
 
