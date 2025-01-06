@@ -1,10 +1,19 @@
 <template>
-  <section>
-    <div class="box">
-      <el-select v-model="value" placeholder="请输入关键词">
+  <section style="height: 2000px;">
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose" :lock-scroll="false">
+      <div class="box" style="display: flex; justify-content: center; align-items: center;">
+        <el-select v-model="value" placeholder="请输入关键词" style="height: 600px;">
+          <el-option v-for="item in options" :key="item" :label="item" :value="item">
+          </el-option>
+        </el-select>
+      </div>
+    </el-dialog>
+    <div style="margin-top: 500px; text-align: center;">
+      <el-select v-model="value" placeholder="请输入关键词" style="height: 600px;">
         <el-option v-for="item in options" :key="item" :label="item" :value="item">
         </el-option>
       </el-select>
+      <el-button type="primary" @click="dialogVisible = true">show dialog</el-button>
     </div>
   </section>
 </template>
@@ -25,6 +34,7 @@ export default {
   components: { select },
   data() {
     return {
+      dialogVisible: false,
       value: [],
       list: [],
       loading: false,
@@ -48,7 +58,7 @@ export default {
     }
   },
   mounted() {
-    document.body.style.zoom = 0.8;
+    document.body.style.zoom = 0.7;
   },
   methods: {
     remoteMethod(query) {

@@ -1196,10 +1196,10 @@
 
         if (fixed) {
             var scrollParent = getScrollParent(parent);
-            parentRect.top += scrollParent.scrollTop;
-            parentRect.bottom += scrollParent.scrollTop;
-            parentRect.left += scrollParent.scrollLeft;
-            parentRect.right += scrollParent.scrollLeft;
+            parentRect.top += scrollParent.scrollTop / document.body.style.zoom;
+            parentRect.bottom += scrollParent.scrollTop / document.body.style.zoom;
+            parentRect.left += scrollParent.scrollLeft / document.body.style.zoom;
+            parentRect.right += scrollParent.scrollLeft / document.body.style.zoom;
         }
 
         var rect = {
