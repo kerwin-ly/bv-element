@@ -78,6 +78,9 @@ export declare class ElSelect extends ElementUIComponent {
   /** Whether to append the popper menu to body */
   popperAppendToBody: boolean
 
+  /** Callback before value change, return false to block change */
+  preChange: (value: any) => boolean
+
   /**
    * Focus the Input component
    */
