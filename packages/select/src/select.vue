@@ -305,7 +305,7 @@
         type: Boolean,
         default: true
       },
-      preChange: {
+      beforeChange: {
         type: Function
       }
     },
@@ -447,7 +447,7 @@
 
     methods: {
       shouldProceedChange(val) {
-        return typeof this.preChange === 'function' ? this.preChange(val) !== false : true;
+        return typeof this.beforeChange === 'function' ? this.beforeChange(val) !== false : true;
       },
       emitInputAndChange(val) {
         if (!this.shouldProceedChange(val)) return false;

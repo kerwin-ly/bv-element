@@ -79,7 +79,7 @@ export declare class ElSelect extends ElementUIComponent {
   popperAppendToBody: boolean
 
   /** Callback before value change, return false to block change */
-  preChange: (value: any) => boolean
+  beforeChange: (value: any) => boolean
 
   /**
    * Focus the Input component

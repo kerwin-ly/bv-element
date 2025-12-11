@@ -801,13 +801,13 @@ describe('Select', () => {
     }, 10);
   });
 
-  it('pre-change returns false should block change', done => {
-    const preChange = sinon.stub().returns(false);
+  it('before-change returns false should block change', done => {
+    const beforeChange = sinon.stub().returns(false);
     const change = sinon.spy();
     vm = createVue({
       template: `
         <div>
-          <el-select v-model="value" :pre-change="preChange" @change="change">
+          <el-select v-model="value" :before-change="beforeChange" @change="change">
             <el-option label="1" :value="1" />
             <el-option label="2" :value="2" />
           </el-select>
@@ -816,7 +816,7 @@ describe('Select', () => {
       data() {
         return {
           value: 1,
-          preChange,
+          beforeChange,
           change
         };
       }
@@ -825,20 +825,20 @@ describe('Select', () => {
     triggerEvent(options[1], 'mouseenter');
     options[1].click();
     setTimeout(() => {
-      expect(preChange.calledWith(2)).to.be.true;
+      expect(beforeChange.calledWith(2)).to.be.true;
       expect(change.called).to.be.false;
       expect(vm.value).to.equal(1);
       done();
     }, 10);
   });
 
-  it('pre-change returns true should allow change', done => {
-    const preChange = sinon.stub().returns(true);
+  it('before-change returns true should allow change', done => {
+    const beforeChange = sinon.stub().returns(true);
     const change = sinon.spy();
     vm = createVue({
       template: `
         <div>
-          <el-select v-model="value" :pre-change="preChange" @change="change">
+          <el-select v-model="value" :before-change="beforeChange" @change="change">
             <el-option label="1" :value="1" />
             <el-option label="2" :value="2" />
           </el-select>
@@ -847,7 +847,7 @@ describe('Select', () => {
       data() {
         return {
           value: 1,
-          preChange,
+          beforeChange,
           change
         };
       }
@@ -856,7 +856,7 @@ describe('Select', () => {
     triggerEvent(options[1], 'mouseenter');
     options[1].click();
     setTimeout(() => {
-      expect(preChange.calledWith(2)).to.be.true;
+      expect(beforeChange.calledWith(2)).to.be.true;
       expect(change.calledOnce).to.be.true;
       expect(vm.value).to.equal(2);
       done();
