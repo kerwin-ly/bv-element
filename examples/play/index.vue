@@ -15,6 +15,22 @@
       </el-select>
       <el-button type="primary" @click="dialogVisible = true">show dialog</el-button>
     </div>
+
+    <div style="margin-top: 40px; padding: 20px; text-align: center; border: 1px dashed #dcdfe6;">
+      <h4 style="margin-bottom: 16px;">pre-change 示例</h4>
+      <div style="margin-bottom: 12px;">
+        <span style="margin-right: 8px;">开启拦截确认：</span>
+        <el-switch v-model="guardEnabled"></el-switch>
+      </div>
+      <el-select
+        v-model="guardValue"
+        placeholder="选择州名"
+        style="width: 260px;"
+        :pre-change="handlePreChange">
+        <el-option v-for="item in options" :key="item" :label="item" :value="item"></el-option>
+      </el-select>
+      <div style="margin-top: 10px; color: #909399;">{{ preChangeMsg }}</div>
+    </div>
   </section>
 </template>
 
@@ -36,6 +52,9 @@ export default {
     return {
       dialogVisible: false,
       value: [],
+      guardValue: '',
+      guardEnabled: true,
+      preChangeMsg: '',
       list: [],
       loading: false,
       options: ["Alabama", "Alaska", "Arizona",
@@ -61,6 +80,15 @@ export default {
     document.body.style.zoom = 0.7;
   },
   methods: {
+    handlePreChange(val) {
+      if (!this.guardEnabled) {
+        this.preChangeMsg = `未拦截，切换到 ${val}`;
+        return true;
+      }
+      const allowed = window.confirm(`是否切换到 ${val} ?`);
+      this.preChangeMsg = allowed ? `已允许切换到 ${val}` : `已阻止切换到 ${val}`;
+      return allowed;
+    },
     remoteMethod(query) {
       if (query !== '') {
         this.loading = true;

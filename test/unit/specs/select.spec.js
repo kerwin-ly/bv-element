@@ -801,6 +801,68 @@ describe('Select', () => {
     }, 10);
   });
 
+  it('pre-change returns false should block change', done => {
+    const preChange = sinon.stub().returns(false);
+    const change = sinon.spy();
+    vm = createVue({
+      template: `
+        <div>
+          <el-select v-model="value" :pre-change="preChange" @change="change">
+            <el-option label="1" :value="1" />
+            <el-option label="2" :value="2" />
+          </el-select>
+        </div>
+      `,
+      data() {
+        return {
+          value: 1,
+          preChange,
+          change
+        };
+      }
+    }, true);
+    const options = vm.$el.querySelectorAll('.el-select-dropdown__item');
+    triggerEvent(options[1], 'mouseenter');
+    options[1].click();
+    setTimeout(() => {
+      expect(preChange.calledWith(2)).to.be.true;
+      expect(change.called).to.be.false;
+      expect(vm.value).to.equal(1);
+      done();
+    }, 10);
+  });
+
+  it('pre-change returns true should allow change', done => {
+    const preChange = sinon.stub().returns(true);
+    const change = sinon.spy();
+    vm = createVue({
+      template: `
+        <div>
+          <el-select v-model="value" :pre-change="preChange" @change="change">
+            <el-option label="1" :value="1" />
+            <el-option label="2" :value="2" />
+          </el-select>
+        </div>
+      `,
+      data() {
+        return {
+          value: 1,
+          preChange,
+          change
+        };
+      }
+    }, true);
+    const options = vm.$el.querySelectorAll('.el-select-dropdown__item');
+    triggerEvent(options[1], 'mouseenter');
+    options[1].click();
+    setTimeout(() => {
+      expect(preChange.calledWith(2)).to.be.true;
+      expect(change.calledOnce).to.be.true;
+      expect(vm.value).to.equal(2);
+      done();
+    }, 10);
+  });
+
   it('render slot `empty`', done => {
     vm = createVue({
       template: `

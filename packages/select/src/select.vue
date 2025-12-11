@@ -304,6 +304,9 @@
       popperAppendToBody: {
         type: Boolean,
         default: true
+      },
+      preChange: {
+        type: Function
       }
     },
 
@@ -443,6 +446,15 @@
     },
 
     methods: {
+      shouldProceedChange(val) {
+        return typeof this.preChange === 'function' ? this.preChange(val) !== false : true;
+      },
+      emitInputAndChange(val) {
+        if (!this.shouldProceedChange(val)) return false;
+        this.$emit('input', val);
+        this.emitChange(val);
+        return true;
+      },
       handleNavigate(direction) {
         if (this.isOnComposition) return;
 
@@ -630,8 +642,7 @@
         if (e.target.value.length <= 0 && !this.toggleLastOptionHitState()) {
           const value = this.value.slice();
           value.pop();
-          this.$emit('input', value);
-          this.emitChange(value);
+          this.emitInputAndChange(value);
         }
       },
 
@@ -691,8 +702,8 @@
           } else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
             value.push(option.value);
           }
-          this.$emit('input', value);
-          this.emitChange(value);
+          const changed = this.emitInputAndChange(value);
+          if (!changed) return;
           if (option.created) {
             this.query = '';
             this.handleQueryChange('');
@@ -700,8 +711,8 @@
           }
           if (this.filterable) this.$refs.input.focus();
         } else {
-          this.$emit('input', option.value);
-          this.emitChange(option.value);
+          const changed = this.emitInputAndChange(option.value);
+          if (!changed) return;
           this.visible = false;
         }
         this.isSilentBlur = byClick;
@@ -765,8 +776,8 @@
       deleteSelected(event) {
         event.stopPropagation();
         const value = this.multiple ? [] : '';
-        this.$emit('input', value);
-        this.emitChange(value);
+        const changed = this.emitInputAndChange(value);
+        if (!changed) return;
         this.visible = false;
         this.$emit('clear');
       },
@@ -776,8 +787,8 @@
         if (index > -1 && !this.selectDisabled) {
           const value = this.value.slice();
           value.splice(index, 1);
-          this.$emit('input', value);
-          this.emitChange(value);
+          const changed = this.emitInputAndChange(value);
+          if (!changed) return;
           this.$emit('remove-tag', tag.value);
         }
         event.stopPropagation();
